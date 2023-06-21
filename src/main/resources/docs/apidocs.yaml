@@ -1,0 +1,59 @@
+openapi: 3.0.3
+info:
+  version: "1.0.0"
+  title: Academic registry
+  description: >-
+    This is an example of using OAuth2 Password Flow in a specification to
+    describe security to your API.
+servers:
+  - description: Local server
+    url: https://localhost:${SERVER_PORT:9002}/nordonezc/academic-registry/1.0.0
+paths:
+  /program:
+    get:
+      tags:
+        - program
+      summary: Program offered by the institution
+      description: >-
+        Get all the programs offered by the institution.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Program'
+  /programs/all:
+    get:
+      tags:
+        - program
+      summary: All programs offered by the institution
+      description: >- 
+        Array of all programs offered by the institution
+        ordered by default by name
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+components:
+  responses:
+  parameters:
+  schemas:
+    Program:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Id of the program
+        name:
+          type: string
+          description: Name of the program
+        department:
+          type: string
+          description: Department of the program
