@@ -3,16 +3,13 @@ package com.co.prft.javahub.academicregistry.mapper;
 import com.co.prft.javahub.academicregistry.model.program.StatusProgram;
 import org.mapstruct.Mapper;
 
-import java.util.Optional;
-import java.util.function.Function;
-
 @Mapper
 public interface StatusProgramMapper {
 
     default StatusProgram map(String statusProgram) {
-        try{
+        try {
             return StatusProgram.valueOf(statusProgram);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             return StatusProgram.EMPTY;
         }
     }
